@@ -1,0 +1,77 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="oadate" default="test-run" basedir=".">
+
+    <description>
+        Ole Automation Date
+    </description>
+
+    <property name="ivy.install.version" value="2.0.0-beta1" />
+    <property name="ivy.jar.dir" value="${basedir}/ivy" />
+    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+    <property name="build.dir" location="build"/>
+    <property name="src" location="src"/>
+    <property name="test"  location="test"/>
+
+    <target name="-check-ivy-download">
+        <available property="skip.download" file="${ivy.jar.file}"/>
+    </target>
+
+    <target name="-download-ivy" depends="-check-ivy-download" unless="skip.download">
+        <mkdir dir="${ivy.jar.dir}"/>
+        <echo message="installing ivy..."/>
+        <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+            dest="${ivy.jar.file}" usetimestamp="true"/>
+    </target>
+
+    <target name="init" depends="-download-ivy">
+        <tstamp/>
+        <path id="ivy.lib.path">
+            <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="init" description="compile the source">
+        <javac srcdir="${src}" destdir="${build.dir}" target="1.5"/>
+    </target>
+
+    <target name="run" depends="compile" description="run main">
+        <java classpath="${build.dir}" classname="OleAutomationDate"/>
+    </target>
+
+    <target name="test-resolve-deps">
+        <ivy:retrieve />
+    </target>
+
+    <target name="test-compile" depends="compile,test-resolve-deps" description="compile the tests">
+        <ivy:cachepath pathid="ivy.classpath" conf="default" />
+        <javac srcdir="${test}" destdir="${build.dir}" target="1.5">
+            <classpath refid="ivy.classpath"/>
+            <classpath path="${build.dir}"/>
+        </javac>
+    </target>
+
+    <target name="test-run" depends="test-compile" description="run test tests">
+        <ivy:cachepath pathid="ivy.classpath" conf="default" />
+
+        <junit printsummary="true" haltonfailure="yes">
+            <classpath refid="ivy.classpath"/>
+            <classpath path="${build.dir}"/>
+            <formatter type="plain" usefile="false" />
+            <batchtest>
+                <fileset dir="${test}" includes="**/*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="clean" description="clean up" >
+        <delete dir="${build.dir}"/>
+    </target>
+    
+    <target name="clean-all" depends="clean">
+        <delete dir="${ivy.jar.dir}"/>
+        <delete dir="lib"/>
+    </target>
+</project>
+
