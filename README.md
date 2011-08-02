@@ -9,7 +9,8 @@ whose integral component is the number of days before or
 after midnight, 30 December 1899, and whose fractional component 
 represents the time on that day divided by 24. 
 
-For example, 
+For example
+ 
 * 1.0 represents Midnight on 31 December 1899
 * 2.25 represents 6 A.M. on 1 January 1900 
 * -1.0 represents Midnight on 29 December 1899 
