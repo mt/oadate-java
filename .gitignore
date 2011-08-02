@@ -1,4 +1,6 @@
 build/
 ivy/
 lib/
-
+*.iml
+*.ipr
+*.iws
