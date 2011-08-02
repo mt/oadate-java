@@ -1,9 +1,9 @@
 import org.apache.commons.lang.time.DateUtils;
-import org.junit.matchers.JUnitMatchers.*;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
-import java.util.TimeZone;
+
 import java.util.Date;
+import java.util.TimeZone;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
 
 public class OleAutomationDateUtilTest {
     
