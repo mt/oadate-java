@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Oadate-Java by mt</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Oadate-Java</h1>
+        <p class="header">A java utility to parse Microsoft's Ole Automation Date format</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/mt/oadate-java/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/mt/oadate-java/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/mt/oadate-java">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/mt">mt</a></p>
+
+
+      </header>
+      <section>
+        <h3>This is an attempt to create an utility to convert OLE Automation Dates to java.util.Date's.</h3>
+
+<p>The OLE automation date format is a floating point value, 
+counting days since midnight 30 December 1899. 
+Hours and minutes are represented as fractional days.
+An OLE Automation date is implemented as a floating-point number 
+whose integral component is the number of days before or 
+after midnight, 30 December 1899, and whose fractional component 
+represents the time on that day divided by 24. </p>
+
+<p>For example</p>
+
+<ul>
+<li>1.0 represents Midnight on 31 December 1899</li>
+<li>2.25 represents 6 A.M. on 1 January 1900 </li>
+<li>-1.0 represents Midnight on 29 December 1899 </li>
+<li>-1.25 represents 6 A.M on 29 December 1899</li>
+</ul><p>The base OLE Automation Date is midnight, 30 December 1899. The 
+minimum OLE Automation date is midnight, 1 January 0100. The maximum 
+OLE Automation Date is the last moment of 31 December 9999.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
